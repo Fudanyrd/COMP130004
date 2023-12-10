@@ -42,16 +42,27 @@ public:
         return *this;
     }
 
+    void construct(int N){
+        this->rows = N;
+        data = new int*[N];
+        for(int i=0;i!=N;++i){
+            data[i] = new int[N-i];
+            for(int j=0;j!=N-i;++j){
+                data[i][j]=0;
+            }
+        }
+    }
+
     unsigned int numRows()const{ return this->rows; }
 
     /* return the matrix element at row r and column c.*/
     int& elementAt(int r=0,int c=0){
-        if(r<=c) return data[r][c]; 
-        else return data[c][r];
+        if(r<=c) return data[r][c-r]; 
+        else return data[c][r-c];
     }
     const int& elementAt(int r=0,int c=0)const{
-        if(r<=c) return data[r][c]; 
-        else return data[c][r];
+        if(r<=c) return data[r][c-r]; 
+        else return data[c][r-c];
     }
 
     //calculate the product of itself and m.
@@ -66,7 +77,7 @@ public:
                 for(int k=0;k!=rows;++k){
                     elem += this->elementAt(i,k)*m.elementAt(k,j);
                 }
-                res.data[i][j] = elem;
+                res.data[i][j-i] = elem;
             }
         }
         return res; 
