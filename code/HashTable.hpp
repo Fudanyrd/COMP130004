@@ -43,6 +43,7 @@ public:
             users[pos] = new User(id,rowNum); return true;
         }
         else{
+            if(iter->id==id) return false;
             while(iter->link!=0){
                 if(iter->id==id) return false;
                 iter = iter->link;
