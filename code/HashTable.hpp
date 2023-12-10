@@ -49,6 +49,7 @@ public:
             }
             iter->link = new User(id,rowNum);
         }
+        return true;
     }
     //return the row number of user(id)
     //return -1 if not found.
