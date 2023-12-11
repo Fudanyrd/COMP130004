@@ -9,11 +9,11 @@ using SocialNet::UserList;
 using namespace std;
 
 int main(int argc,char** argv){
-    string filename="sample.txt";
+    string filename="sample3.txt";
     UserList list;
     list.load(filename);
 
-    int N=4;
+    int N=6;
     if(N!=list.size()){
         cout << list.size() << endl;
         cout << "size mismatch" << endl;
