@@ -1,0 +1,33 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{CJKutf8}
+\usepackage{minted}
+\usepackage{graphicx}
+
+\title{Project Report of COMP130004}
+\author{Fudanyrd}
+\date{December, 2023}
+
+\begin{document}
+\begin{CJK*}{UTF8}{gbsn}
+\maketitle
+\par Github link to this Proj: http://github.com/Fudanyrd/COMP130004
+
+\section{基础数据结构}
+
+\paragraph{Matrix}
+ 考虑到用户之间的朋友关系是对称的,所以相应图的邻接矩阵表示是对称矩阵,可以用
+上三角阵压缩存储.
+\paragraph{User}
+ 每个用户都有属性id(身份标识码),rowNum(在邻接矩阵中存储的行号),所以用一个结构体封装.
+\paragraph{HashTable}
+除留余数法为散列函数,用开散列法解决冲突的散列表,关键码为用户id,可以实现在$O(1)$时间内
+根据用户身份标识码查找在邻接矩阵中所在行号.
+\paragraph{UserList}
+建立上述散列表和一个行号为关键码的向量(由于行号不重复,无需考虑堆积),可以在$O(1)$时间内
+实现行号和用户标识码的一一对应.
+\paragraph{Relationship}
+接口类,执行handout中提及的所有功能.
+
+\end{CJK*}
+\end{document}
