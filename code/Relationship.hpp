@@ -17,6 +17,27 @@ class Relationship{
 private:
     Matrix data;
     SocialNet::UserList* list_ptr;
+
+    //单个节点的聚集系数,给定行号
+    double coefficient(int r){
+        double res;
+        //step 1: find all its neighbors, time: O(N), space O(N).
+        std::vector<int> neighbors;
+        for(int c=0;c!=list_ptr->size();++c){
+            if(data.elementAt(r,c)) neighbors.push_back(c);
+        }
+        //step 2: count all edges and possible edges.
+        //time: O(N^2). space: O(1)
+        long count = 0, total = 0;
+        if(neighbors.size()<=1) return 0.0;//only have one neighbor
+        for(int i=0;i!=neighbors.size();++i){
+            for(int j=i+1;j<neighbors.size();++j){
+                count+=data.elementAt(neighbors[i],neighbors[j]);
+                total+=1.0;
+            }
+        }
+        return (double)count/(double)total;
+    }
 public:
     Relationship(){
         list_ptr = new UserList();
@@ -137,6 +158,15 @@ public:
             sum+=res.elementAt(r,r);
         }
         return sum/6;
+    }
+    //分析网络的平均聚集系数（Clustering Coefficient）
+    //time: O(N^3), space: O(N^2)
+    double clusteringCoefficient(){
+        double res = 0.0;
+        for(int i=0;i!=this->list_ptr->size();++i){
+            res += this->coefficient(i);
+        }
+        return res/list_ptr->size();
     }
 };
 

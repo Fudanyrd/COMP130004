@@ -4,6 +4,7 @@
 */
 
 #include "Relationship.hpp"
+#include <iomanip>
 using namespace std;
 using namespace SocialNet;
 
@@ -54,6 +55,11 @@ int main(int argc,char** argv){
     r5.load("sample5.txt");
     int N5 = 11;
     cout << r5.triangles() << endl;     //6 expected.
+
+    Relationship r6;
+    r6.load("sample6.txt");
+    cout << r6.triangles() << endl; //1 expected.
+    cout << setiosflags(ios::fixed) << setprecision(2) << r6.clusteringCoefficient() << endl;//0.47 expected.
 
     return 0;
 }
