@@ -78,7 +78,7 @@ public:
         std::cout << std::endl;
     }
 
-    //查询用户的直接和间接朋友数量
+    //查询用户的直接朋友数量
     int numOfFriend(int id){
         const int r = list_ptr->rowNumOf(id);
         if(r==-1){
@@ -90,6 +90,29 @@ public:
             count += data.elementAt(r,col);
         }
         return count;
+    }
+    //查询用户的间接朋友数量,广度优先搜索找出所有朋友数量减去
+    //直接朋友数量.
+    int numOfSubFriend(int id){
+        const int r1 = list_ptr->rowNumOf(id);
+        int count = 0, temp;
+        bool* visited = new bool[list_ptr->size()];
+        for(int i=0;i!=list_ptr->size();++i){
+            visited[i] = false;
+        }
+        visited[r1] = true;     //from r1, try to find r2.
+        std::queue<int> path;
+        path.push(r1);
+        while(!path.empty()){
+            temp = path.front(); path.pop();
+            for(int col=0;col!=list_ptr->size();++col){
+                if(data.elementAt(temp,col)&&!visited[col]){
+                    visited[col] = true; path.push(col); ++count;
+                }
+            }
+        }
+        delete[] visited;
+        return count-numOfFriend(id);
     }
 
     //计算两个用户之间的最短社交距离;使用广度优先搜索.
