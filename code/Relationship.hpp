@@ -224,10 +224,7 @@ public:
                 }
             }
             dat[c] = -109;  //visited.
-            if(i)
-                res.push_back(list_ptr->idOfRow(c)==res[i-1]?list_ptr->idOfRow(c)+1:list_ptr->idOfRow(c));
-            else
-                res.push_back(list_ptr->idOfRow(c));
+            res.push_back(list_ptr->idOfRow(c));
         }
         delete[] dat;
         return res;
