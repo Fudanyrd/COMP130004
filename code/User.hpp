@@ -27,6 +27,9 @@ public:
     int load(const std::string& filename){
         int a, num=0;
         std::ifstream fin(filename.c_str());
+        if(!fin.is_open()){
+            throw std::domain_error(("cannot open file "+filename).c_str());
+        }
         while(fin >> a){
             if(lists.insert(a,num)){ //a has not turned up, OK, insert into table.
                 identity.push_back(a);

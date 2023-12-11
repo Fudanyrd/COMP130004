@@ -25,19 +25,37 @@ int main(int argc,char** argv){
     Relationship r;
     //timer
     time_t begin, end;
-    r.load(_Data);
+    try{
+        r.load(_Data);
+    }
+    catch(std::domain_error e){
+        cout << "无法打开文件" << _Data << ",终止" << endl;
+        return 0;
+    }
 
     //get input and generate output.
     std::ofstream fout(output.c_str());
     std::ifstream fin(input.c_str());
+    if(!fin.is_open()){
+        cout << "无法打开文件" << input << ",终止" << endl;
+        return 0;
+    }
 
     //part 1: direct and indirect friends count.
     int N, temp;
+    int a, b;
     fin >> N;
     time(&begin);
     for(int i=0;i!=N;++i){
         fin >> temp;
-        fout << "用户" << temp << "的直接朋友数量为" << r.numOfFriend(temp) << 
+        try{
+            a = r.numOfFriend(temp);
+        }
+        catch(domain_error e){
+            fout << "用户" << temp << "的信息!" << endl;
+            continue;
+        }
+        fout << "用户" << temp << "的直接朋友数量为" << a << 
             "，间接朋友数量为" << r.numOfSubFriend(temp) << dot << endl;
     }
     time(&end);
@@ -46,7 +64,6 @@ int main(int argc,char** argv){
 
     //part 2: social distance calculation.
     fin >> N;
-    int a, b;
     time(&begin);
     for(int i=0;i!=N;++i){
         fin >> a >> b;
@@ -89,6 +106,7 @@ int main(int argc,char** argv){
         fout << dot << endl;
     } 
     time(&end);
+    output_bracket(fout);
     cout << "高级要求b运算完成,用时" << difftime(end,begin)  << "s." << endl;
 
     //收尾工作
