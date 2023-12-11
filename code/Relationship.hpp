@@ -124,6 +124,20 @@ public:
         }
         return res;
     }
+
+    //网络中朋友三角数量,也即即三个人互为朋友.
+    //考虑矩阵乘法实现,邻接矩阵的3次幂对角元即为
+    //从某一元素出发经长度为3的路径回到自身的路径数目.
+    //同一三角形被重复计算了6次.
+    int triangles(){
+        int sum = 0;
+        Matrix res = data.productOf(data);
+        res = res.productOf(data);
+        for(int r=0;r!=list_ptr->size();++r){
+            sum+=res.elementAt(r,r);
+        }
+        return sum/6;
+    }
 };
 
 };

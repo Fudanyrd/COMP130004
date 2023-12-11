@@ -47,5 +47,13 @@ int main(int argc,char** argv){
     //0,5 or 5,0 expected.
     cout << r4.distanceOf(0,5) << ',' << r4.distanceOf(1,7) << endl;//2,4 expected.
 
+//    cout << r1.triangles() << endl;         //4 expected
+//    cout << r2.triangles() << endl;         //1 expected
+//    cout << r3.triangles() << endl;         //0 expected
+    Relationship r5;
+    r5.load("sample5.txt");
+    int N5 = 11;
+    cout << r5.triangles() << endl;     //6 expected.
+
     return 0;
 }
