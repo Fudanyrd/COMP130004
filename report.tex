@@ -11,7 +11,7 @@
 \begin{document}
 \begin{CJK*}{UTF8}{gbsn}
 \maketitle
-\par Github link to this Proj: http://github.com/Fudanyrd/COMP130004
+\par Github link to this Proj: http://github.com/Fudanyrd/COMP130004.git
 
 \section{基础数据结构}
 
@@ -28,6 +28,36 @@
 实现行号和用户标识码的一一对应.
 \paragraph{Relationship}
 接口类,执行handout中提及的所有功能.
+\par 程序结构如图所示:(insert my image HERE)
+
+\section{关键算法实现和复杂度分析}
+\subsection{基本要求(1): 查询用户的直接和间接朋友数量}
+\par 直接朋友数量即为邻接矩阵同一行中1的个数,扫描一遍即得,时间复杂度$O(N)$,空间复杂度$O(1)$.
+\par 间接朋友数量需要广度优先搜索找出在同一连通分支中的用户个数,需要建立辅助存储空间标记用户是否
+被访问过,找一个用户的邻居需要遍历邻接矩阵的某一行,故有时间复杂度$O(N^2)$,空间复杂度$O(N)$
+同一连通分支中用户数量减去自身和直接朋友数量即为间接朋友数量.
+\par 实现在"Relationship.hpp"中的numOfFriend和numOfSubFriend中.
+\subsection{基本要求(2): 计算两个用户之间的最短社交距离}
+\par 用广度优先搜索(可以保证是最小距离),找到所给用户或找遍一个连通分支为止,复杂度分析同上
+: 时间复杂度$O(N^2)$,空间复杂度$O(N)$.
+\par 实现在"Relationship.hpp"中的distanceOf中.
+\subsection{基本要求(3): 超级连接者}
+\par 暴力搜索,计算每个用户的朋友数,找最大值,总的时间复杂度$O(N^2)$,空间复杂度$O(N)$.
+需要建立额外的存储空间是由于超级连接者可能不止一个,该算法找出所有的,通过向量返回.
+\par 实现在"Relationship.hpp"中的superUsers函数中.
+\subsection{高级要求(1): 高级网络分析算法}
+\paragraph{Clustering Coefficient: } 根据handout中的方法先找出给定用户的所有朋友,再
+分析这些朋友之间的连接情况,算法使用两层嵌套循环和向量为辅助存储空间,最坏情况下用户朋友个数的数量级为$O(N)$,
+故总的时间复杂度$O(N^2)$,空间复杂度$O(N)$.
+\paragraph{朋友三角的数量: }依靠邻接矩阵的3次幂搞定,邻接矩阵的3次幂的trace(迹)是三角形个数的6倍.
+一次矩阵乘法运算的时间复杂度$O(N^3)$,空间复杂度$O(N^2)$.
+\subsection{高级要求(2): 用户推荐功能}
+\par 对于
+
+\section{写在最后}
+\par 本人在完成此次Proj的过程中未借助任何AI工具,没有从互联网和其他同学那里复制粘贴代码段.
+
+\section{运行结果}
 
 \end{CJK*}
 \end{document}

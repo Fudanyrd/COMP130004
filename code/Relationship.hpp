@@ -217,14 +217,17 @@ public:
         }
         int maxValue, c;
         for(int i=0;i!=3;++i){
-            maxValue = dat[i];
+            maxValue = dat[i]; c = 0;
             for(int j=0;j!=list_ptr->size();++j){
                 if(maxValue<dat[j]){
                     maxValue = dat[j]; c = j;
                 }
             }
-            dat[c] = -1;  //visited.
-            res.push_back(list_ptr->idOfRow(c));
+            dat[c] = -109;  //visited.
+            if(i)
+                res.push_back(list_ptr->idOfRow(c)==res[i-1]?list_ptr->idOfRow(c)+1:list_ptr->idOfRow(c));
+            else
+                res.push_back(list_ptr->idOfRow(c));
         }
         delete[] dat;
         return res;
