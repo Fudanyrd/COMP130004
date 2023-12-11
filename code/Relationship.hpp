@@ -53,6 +53,18 @@ public:
     Relationship(){
         list_ptr = new UserList();
     }
+    void findCommonFriend(int id1,int id2){
+        const int r1=list_ptr->rowNumOf(id1),r2=list_ptr->rowNumOf(id2);
+        if(id1==id2||data.elementAt(r1,r2)){
+            std::cout << -1 << std::endl; return;
+        }
+        for(int c=0;c!=list_ptr->size();++c){
+            if(data.elementAt(r1,c)&&data.elementAt(r2,c)){
+                std::cout << list_ptr->idOfRow(c) << ',';
+            }
+        }
+        std::cout << std::endl;
+    }
 
     //load users' relationship from file.
     void load(const std::string& filename){

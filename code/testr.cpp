@@ -78,5 +78,9 @@ int main(int argc,char** argv){
     r10.load("sample10.txt");
     cout << r10.triangles() << endl;//4 expected
 
+    Relationship R;
+    R.load("data.txt");
+    R.findCommonFriend(432,500);
+
     return 0;
 }
