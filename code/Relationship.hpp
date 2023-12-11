@@ -38,6 +38,18 @@ private:
         }
         return (double)count/(double)total;
     }
+    //get the number of common friends for user id1 and id2.
+    //return -1 if (a) id1==id2; (b) id1 and id2 are direct friends
+    //time: O(N). space: O(1)
+    int commonNum(int id1,int id2){
+        const int r1=id1,r2=id2;
+        if(id1==id2||data.elementAt(r1,r2)) return -1;
+        int count = 0;
+        for(int c=0;c!=list_ptr->size();++c){
+            count+=data.elementAt(r1,c)&data.elementAt(r2,c);
+        }
+        return count;
+    }
 public:
     Relationship(){
         list_ptr = new UserList();
@@ -167,6 +179,29 @@ public:
             res += this->coefficient(i);
         }
         return res/list_ptr->size();
+    }
+
+    //针对任一用户，基于共同朋友数量，向其推荐三个最有可能的潜在朋友
+    std::vector<int> recommodations(int id){
+        const int r = list_ptr->rowNumOf(id);
+        std::vector<int> res;
+        int* dat = new int[list_ptr->size()];
+        for(int i=0;i!=list_ptr->size();++i){
+            dat[i] = this->commonNum(r,i);
+        }
+        int maxValue, c;
+        for(int i=0;i!=3;++i){
+            maxValue = dat[i];
+            for(int j=0;j!=list_ptr->size();++j){
+                if(maxValue<dat[j]){
+                    maxValue = dat[j]; c = j;
+                }
+            }
+            dat[c] = -1;  //visited.
+            res.push_back(list_ptr->idOfRow(c));
+        }
+        delete[] dat;
+        return res;
     }
 };
 

@@ -61,5 +61,12 @@ int main(int argc,char** argv){
     cout << r6.triangles() << endl; //1 expected.
     cout << setiosflags(ios::fixed) << setprecision(2) << r6.clusteringCoefficient() << endl;//0.47 expected.
 
+    Relationship r7;
+    r7.load("sample7.txt");
+    res = r7.recommodations(0);
+    for(int i=0;i!=res.size();++i){
+        cout << res[i] << ',';
+    }   cout << endl;//7,3,12 or 7,12,3 expected
+
     return 0;
 }
