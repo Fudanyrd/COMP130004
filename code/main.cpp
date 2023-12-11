@@ -28,7 +28,7 @@ int main(int argc,char** argv){
     try{
         r.load(_Data);
     }
-    catch(std::domain_error e){
+    catch(std::domain_error& e){
         cout << "无法打开文件" << _Data << ",终止" << endl;
         return 0;
     }
@@ -51,7 +51,7 @@ int main(int argc,char** argv){
         try{
             a = r.numOfFriend(temp);
         }
-        catch(domain_error e){
+        catch(domain_error& e){
             fout << "用户" << temp << "的信息!" << endl;
             continue;
         }
