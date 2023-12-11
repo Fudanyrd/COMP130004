@@ -185,14 +185,18 @@ public:
     //从某一元素出发经长度为3的路径回到自身的路径数目.
     //同一三角形被重复计算了6次.
     int triangles(){
-        int sum = 0;
         Matrix res = data.productOf(data);
-        res = res.productOf(data);
-        for(int r=0;r!=list_ptr->size();++r){
-            sum+=res.elementAt(r,r);
-        }
-        return sum/6;
+        return res.traceOfProductOf(data)/6;
     }
+//    int triangles(){
+//        int sum = 0;
+//        Matrix res = data.productOf(data);
+//        res = res.productOf(data);
+//        for(int r=0;r!=list_ptr->size();++r){
+//            sum+=res.elementAt(r,r);
+//        }
+//        return sum/6;
+//    }
     //分析网络的平均聚集系数（Clustering Coefficient）
     //time: O(N^3), space: O(N^2)
     double clusteringCoefficient(){

@@ -82,6 +82,16 @@ public:
         }
         return res; 
     }
+    //return trace of product of (*this)*m.
+    int traceOfProductOf(const Matrix& m){
+        int res = 0;
+        for(unsigned int r=0;r!=rows;++r){
+            for(unsigned int c=0;c!=rows;++c){
+                res += this->elementAt(r,c)*m.elementAt(c,r);
+            }
+        }
+        return res; 
+    }
 
     //for debugging, output a matrix to see if it matches expectation.
     void display()const{
