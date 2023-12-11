@@ -52,12 +52,19 @@
 \paragraph{朋友三角的数量: }依靠邻接矩阵的3次幂搞定,邻接矩阵的3次幂的trace(迹)是三角形个数的6倍.
 一次矩阵乘法运算的时间复杂度$O(N^3)$,空间复杂度$O(N^2)$.
 \subsection{高级要求(2): 用户推荐功能}
-\par 对于
+\par 对于给定的用户身份识别码,计算他与其他所有用户的共同朋友数(总时间复杂度$O(N*N)=O(N^2)$,总空间复杂度$O(1)$).
+在从中选出3个共同朋友数最多的用户(时间复杂度$O(N)$,空间复杂度$O(N)$因为借助了辅助空间),故总的时间复杂度$O(N^2)$,
+空间复杂度$O(N)$.
+
+\section{运行结果}
+\par 选用原始文档里的"sample.txt"去掉注释作为测试数据,在wsl下编译结果如下:
+\par (include your picture HERE)
+\par 运行结果如下:
+\par (include your picture HERE)
 
 \section{写在最后}
 \par 本人在完成此次Proj的过程中未借助任何AI工具,没有从互联网和其他同学那里复制粘贴代码段.
-
-\section{运行结果}
+\par 当然,希望尊敬的张老师以后能早一点 release Proj.(哭)
 
 \end{CJK*}
 \end{document}
