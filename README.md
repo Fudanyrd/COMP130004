@@ -6,7 +6,7 @@
     Although some of you may don't think so.
 
     If you seek to copy code snippets from this project, 
-    please display prminently that "it is NOT my own work" 
+    please display prominently that "it is NOT my own work" 
     in case all of us get into plagiarism inspection.
 
     Also, it is guaranteed that my solution will be correct but NOT
