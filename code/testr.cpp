@@ -68,5 +68,9 @@ int main(int argc,char** argv){
         cout << res[i] << ',';
     }   cout << endl;//7,3,12 or 7,12,3 expected
 
+    Relationship r9;
+    r9.load("sample9.txt");
+    cout << r9.distanceOf(0,39) << endl;//7 expected.
+
     return 0;
 }
