@@ -42,7 +42,7 @@ int main(int argc,char** argv){
     r4.load("sample4.txt");
     int N4 = 8;
     vector<int> res = r4.superUsers();
-    for(int r=0;r!=res.size();++r){
+    for(int r=0;r!=(int)res.size();++r){
         cout << res[r] << ',';
     }   cout << endl;
     //0,5 or 5,0 expected.

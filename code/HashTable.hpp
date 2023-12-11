@@ -30,7 +30,7 @@ public:
     }
     HashTable(unsigned int l):len(l){
         users = new User*[l];
-        for(int i=0;i!=l;++i) users[i]=0;
+        for(unsigned int i=0;i!=l;++i) users[i]=0;
     }
     ~HashTable(){ delete[] users;}
 

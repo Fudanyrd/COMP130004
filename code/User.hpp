@@ -42,7 +42,7 @@ public:
     int rowNumOf(int id){ return lists.rowNumOf(id); }
     //get the id of a user(given row number)
     int idOfRow(int rowNum){
-        if(rowNum<0||rowNum>=identity.size()) throw std::domain_error("in class UserList::idOfRow "
+        if(rowNum<0||rowNum>=(int)identity.size()) throw std::domain_error("in class UserList::idOfRow "
         "array out of bounds");
         return identity[rowNum];
     }

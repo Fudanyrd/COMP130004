@@ -20,7 +20,6 @@ private:
 
     //单个节点的聚集系数,给定行号
     double coefficient(int r){
-        double res;
         //step 1: find all its neighbors, time: O(N), space O(N).
         std::vector<int> neighbors;
         for(int c=0;c!=list_ptr->size();++c){
@@ -30,8 +29,8 @@ private:
         //time: O(N^2). space: O(1)
         long count = 0, total = 0;
         if(neighbors.size()<=1) return 0.0;//only have one neighbor
-        for(int i=0;i!=neighbors.size();++i){
-            for(int j=i+1;j<neighbors.size();++j){
+        for(unsigned int i=0;i!=neighbors.size();++i){
+            for(unsigned int j=i+1;j<neighbors.size();++j){
                 count+=data.elementAt(neighbors[i],neighbors[j]);
                 total+=1.0;
             }

@@ -9,25 +9,25 @@
 */
 class Matrix{
 private:
-    int** data; //矩阵元素
     unsigned int rows;
+    int** data; //矩阵元素
 public:
     //initializer
     Matrix():rows(0),data(0){}
     Matrix(unsigned int r):rows(r),data(new int*[r]){
-        for(int i=0;i!=r;++i) data[i] = new int[r-i];
+        for(unsigned int i=0;i!=r;++i) data[i] = new int[r-i];
     }
     Matrix(const Matrix& m){
         this->rows = m.rows;
         data = new int*[rows];
-        for(int i=0;i!=m.rows;++i){
+        for(unsigned int i=0;i!=m.rows;++i){
             data[i] = new int[m.rows-i];
-            for(int j=0;j!=m.rows-i;++j) data[i][j] = m.data[i][j];
+            for(unsigned int j=0;j!=m.rows-i;++j) data[i][j] = m.data[i][j];
         }
     }
     //destructor
     ~Matrix(){
-        for(int i=0;i!=this->rows;++i) delete[] data[i];
+        for(unsigned int i=0;i!=this->rows;++i) delete[] data[i];
         delete[] data;
     }
 
@@ -35,9 +35,9 @@ public:
     Matrix& operator=(const Matrix& m){
         //assume that m.rows == this->rows.
         this->rows = m.rows;
-        for(int i=0;i!=m.rows;++i){
+        for(unsigned int i=0;i!=m.rows;++i){
             data[i] = new int[m.rows-i];
-            for(int j=0;j!=m.rows-i;++j) data[i][j] = m.data[i][j];
+            for(unsigned int j=0;j!=m.rows-i;++j) data[i][j] = m.data[i][j];
         }
         return *this;
     }
@@ -71,10 +71,10 @@ public:
     Matrix productOf(const Matrix& m)const{
         Matrix res(this->rows);
         int elem = 0;
-        for(int i=0;i!=rows;++i){
-            for(int j=i;j!=rows;++j){
+        for(unsigned int i=0;i!=rows;++i){
+            for(unsigned int j=i;j!=rows;++j){
                 elem = 0;
-                for(int k=0;k!=rows;++k){
+                for(unsigned int k=0;k!=rows;++k){
                     elem += this->elementAt(i,k)*m.elementAt(k,j);
                 }
                 res.data[i][j-i] = elem;
@@ -85,8 +85,8 @@ public:
 
     //for debugging, output a matrix to see if it matches expectation.
     void display()const{
-        for(int r=0;r!=rows;++r){
-            for(int c=0;c!=rows;++c){
+        for(unsigned int r=0;r!=rows;++r){
+            for(unsigned int c=0;c!=rows;++c){
                 std::cout << elementAt(r,c) << ' ';
             }
             std::cout << std::endl;
