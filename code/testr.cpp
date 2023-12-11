@@ -72,5 +72,9 @@ int main(int argc,char** argv){
     r9.load("sample9.txt");
     cout << r9.distanceOf(0,39) << endl;//7 expected.
 
+    Relationship r10;
+    r10.load("sample10.txt");
+    cout << r10.triangles() << endl;//4 expected
+
     return 0;
 }
