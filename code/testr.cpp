@@ -37,5 +37,15 @@ int main(int argc,char** argv){
     //2,3,2,2,3,2 expected.
     cout << r3.distanceOf(0,4) << ',' << r3.distanceOf(2,5) << endl; //2,3 expected.
 
+    Relationship r4;
+    r4.load("sample4.txt");
+    int N4 = 8;
+    vector<int> res = r4.superUsers();
+    for(int r=0;r!=res.size();++r){
+        cout << res[r] << ',';
+    }   cout << endl;
+    //0,5 or 5,0 expected.
+    cout << r4.distanceOf(0,5) << ',' << r4.distanceOf(1,7) << endl;//2,4 expected.
+
     return 0;
 }

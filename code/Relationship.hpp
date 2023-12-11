@@ -89,6 +89,7 @@ public:
         }
         if(!visited[r2]){
             //r2 is not marked, so there's no path between r1 and r2.
+            delete[] pathTo; delete[] visited;
             return -1;
         }
         int count = 0;
@@ -96,7 +97,32 @@ public:
         while(temp>=0){
             temp = pathTo[temp]; ++count;
         }
+        delete[] pathTo; delete[] visited;
         return count;
+    }
+
+    //计算网络中的“超级连接者”,也即拥有最多直接朋友的用户.
+    //返回超级连接者id的向量,如果有多个均压进向量.
+    //时间复杂度:O(n^2).
+    std::vector<int> superUsers(){
+        const int sz = list_ptr->size();
+        int* counts = new int[list_ptr->size()];
+        for(int i=0;i!=sz;++i) counts[i] = 0;
+        for(int r=0;r!=sz;++r){
+            for(int c=0;c!=sz;++c){
+                counts[r]+=data.elementAt(r,c);
+            }
+        }
+
+        int maxValue = 0;
+        for(int r=0;r!=sz;++r){
+            if(counts[r]>maxValue) maxValue = counts[r];
+        }
+        std::vector<int> res;
+        for(int r=0;r!=sz;++r){
+            if(counts[r]==maxValue) res.push_back(list_ptr->idOfRow(r));
+        }
+        return res;
     }
 };
 
