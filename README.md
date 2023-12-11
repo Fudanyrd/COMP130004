@@ -11,3 +11,9 @@
 
     Also, it is guaranteed that my solution will be correct but NOT
     optimal. You are free to modify the methods I wrote.
+
+# Bug Report
+Here is a screen shot of my output using original "sample.txt".
+![result](run.png)
+
+I would appreciate it if you a) notice something wrong with it and b) can send me a bug report.
