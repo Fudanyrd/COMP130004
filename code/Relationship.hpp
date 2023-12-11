@@ -217,7 +217,7 @@ public:
         }
         int maxValue, c;
         for(int i=0;i!=3;++i){
-            maxValue = dat[i]; c = 0;
+            maxValue = dat[0]; c = 0;
             for(int j=0;j!=list_ptr->size();++j){
                 if(maxValue<dat[j]){
                     maxValue = dat[j]; c = j;
