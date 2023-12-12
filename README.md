@@ -12,6 +12,25 @@
     Also, it is guaranteed that my solution will be correct but NOT
     optimal. You are free to modify the methods I wrote.
 
+# Debug Tool
+I wrote a friend checker which can tell whether two users are **direct** friends or not
+(since trying to do so by looking at the data.txt is non-trivial).
+
+Hopefully it can help you with debugging.
+
+Here's a demonstration of how to use it.
+```
+PS C:\Users\86182\Desktop\Proj\code> c++ checker.cpp -o checker -Wall
+PS C:\Users\86182\Desktop\Proj\code> .\checker
+432 500
+not friends
+432 557
+friends
+1578 1496
+not friends
+^Z
+```
+
 # Bug Report
 Here is a screen shot of my output using original "sample.txt".
 ![result](run.png)
