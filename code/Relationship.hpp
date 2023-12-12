@@ -13,6 +13,15 @@ namespace SocialNet{
 /*布尔矩阵表示的图结果,节点代表用户,边代表用户之间的
  *关系.
 */
+
+//will be useful to find indirect friend.
+struct tuple{
+    int level;      //the level of a friend
+    int rowNum;     //row number of current user visited.
+    tuple():level(0),rowNum(-1){}
+    tuple(int r,int l=0):level(l),rowNum(r){}
+};
+
 class Relationship{
 private:
     Matrix data;
@@ -106,24 +115,46 @@ public:
     //直接朋友数量.
     int numOfSubFriend(int id){
         const int r1 = list_ptr->rowNumOf(id);
-        int count = 0, temp;
+//        int count = 0, temp;
+//        bool* visited = new bool[list_ptr->size()];
+//        for(int i=0;i!=list_ptr->size();++i){
+//            visited[i] = false;
+//        }
+//        visited[r1] = true;     //from r1, try to find r2.
+//        std::queue<int> path;
+//        path.push(r1);
+//        while(!path.empty()){
+//            temp = path.front(); path.pop();
+//            for(int col=0;col!=list_ptr->size();++col){
+//                if(data.elementAt(temp,col)&&!visited[col]){
+//                    visited[col] = true; path.push(col); ++count;
+//                }
+//            }
+//        }
+//        delete[] visited;
+//        return count-numOfFriend(id);
+        int count = 0;
         bool* visited = new bool[list_ptr->size()];
         for(int i=0;i!=list_ptr->size();++i){
             visited[i] = false;
         }
         visited[r1] = true;     //from r1, try to find r2.
-        std::queue<int> path;
-        path.push(r1);
+        SocialNet::tuple temp(r1,0);
+        std::queue<SocialNet::tuple> path;
+        path.push(temp);
         while(!path.empty()){
             temp = path.front(); path.pop();
-            for(int col=0;col!=list_ptr->size();++col){
-                if(data.elementAt(temp,col)&&!visited[col]){
-                    visited[col] = true; path.push(col); ++count;
+            if(temp.level<2){
+                for(int col=0;col!=list_ptr->size();++col){
+                    if(!visited[col]&&data.elementAt(temp.rowNum,col)){
+                        path.push(SocialNet::tuple(col,temp.level+1));
+                        visited[col] = true;
+                    }
                 }
             }
+            if(temp.level==2) ++count;
         }
-        delete[] visited;
-        return count-numOfFriend(id);
+        return count;
     }
 
     //计算两个用户之间的最短社交距离;使用广度优先搜索.

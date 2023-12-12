@@ -56,7 +56,9 @@ int main(int argc,char** argv){
     int N5 = 11;
     cout << r5.triangles() << endl;     //6 expected.
     cout << r5.numOfFriend(1) << endl;  //2 expected.
-    cout << r5.numOfSubFriend(1) << endl;  //11-2-1 = 8 expected.
+    for(int i=0;i!=N5;++i){
+        cout << r5.numOfSubFriend(i<8?i:i+1) << ',';
+    }   cout << endl;               //3,5,4,5,3,4,3,3,3,2,3 expected.
 
     Relationship r6;
     r6.load("sample6.txt");
