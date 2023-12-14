@@ -115,24 +115,6 @@ public:
     //直接朋友数量.
     int numOfSubFriend(int id){
         const int r1 = list_ptr->rowNumOf(id);
-//        int count = 0, temp;
-//        bool* visited = new bool[list_ptr->size()];
-//        for(int i=0;i!=list_ptr->size();++i){
-//            visited[i] = false;
-//        }
-//        visited[r1] = true;     //from r1, try to find r2.
-//        std::queue<int> path;
-//        path.push(r1);
-//        while(!path.empty()){
-//            temp = path.front(); path.pop();
-//            for(int col=0;col!=list_ptr->size();++col){
-//                if(data.elementAt(temp,col)&&!visited[col]){
-//                    visited[col] = true; path.push(col); ++count;
-//                }
-//            }
-//        }
-//        delete[] visited;
-//        return count-numOfFriend(id);
         int count = 0;
         bool* visited = new bool[list_ptr->size()];
         for(int i=0;i!=list_ptr->size();++i){
@@ -231,15 +213,6 @@ public:
         Matrix res = data.productOf(data);
         return res.traceOfProductOf(data)/6;
     }
-//    int triangles(){
-//        int sum = 0;
-//        Matrix res = data.productOf(data);
-//        res = res.productOf(data);
-//        for(int r=0;r!=list_ptr->size();++r){
-//            sum+=res.elementAt(r,r);
-//        }
-//        return sum/6;
-//    }
     //分析网络的平均聚集系数（Clustering Coefficient）
     //time: O(N^3), space: O(N^2)
     double clusteringCoefficient(){
