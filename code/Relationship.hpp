@@ -2,7 +2,9 @@
 #ifndef RELATIONSHIP_HPP
 #define RELATIONSHIP_HPP
 
-#include "Matrix.hpp"
+// it is your choice which matrix lib to use.
+// #include "Matrix.hpp"
+#include "Parallel.h"
 #include "User.hpp"
 #include <fstream>
 #include <queue>
@@ -84,6 +86,7 @@ public:
         while(fin >> a){
             fin >> b;
             data.elementAt(list_ptr->rowNumOf(a),list_ptr->rowNumOf(b)) = 1;
+            data.elementAt(list_ptr->rowNumOf(b),list_ptr->rowNumOf(a)) = 1;
         }
         fin.close(); return;
     }

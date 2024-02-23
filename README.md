@@ -31,6 +31,20 @@ not friends
 ^Z
 ```
 
+# Parallel Optimization
+First change the `#include "Matrix.hpp"` in `Relationship.hpp` into `#include "Parallel.h"` and then compile and run like this:
+```
+root@yrd:/mnt/c/Users/86182/Desktop/COMP130004/code# c++ -std=c++11 -Wall -fopenmp main.cpp Parallel.cpp
+root@yrd:/mnt/c/Users/86182/Desktop/COMP130004/code# ./a.out
+直接朋友数量,间接朋友数量计算完成,用时0s.
+最短社交距离计算完成,用时0s.
+所有超级用户查找完成,用时0s.
+高级要求a运算完成,用时50s.
+高级要求b运算完成,用时1s.
+```
+Optimization of matrix operation using is nearly 4 times faster(without compromising correctness)!   
+Can we do better? **Pull requests welcomed!**
+
 # Bug Report
 Here is a screen shot of my output using original "sample.txt".
 ![result](run.png)
